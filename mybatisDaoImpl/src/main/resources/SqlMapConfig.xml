@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--mybatis的主配置文件-->
+<configuration>
+    <properties  url="file:///D:/IdeaProject/my-ssm-study/mybatisDaoImpl/src/main/resources/db.properties">
+    </properties>
+
+    <!--配置别名-->
+    <typeAliases>
+        <!--单个别名定义-->
+        <typeAlias type="com.yn.entity.User" alias="user"></typeAlias>
+        <!--整个包下的类都有别名，别名默认为类名，首字母大小写都可以-->
+        <package name="com.yn.entity"></package>
+    </typeAliases>
+
+    <!--配置环境-->
+   <environments default="mybasemybatis">
+       <!--配置数据库环境-->
+       <environment id="mybasemybatis">
+           <!--配置事务的类型-->
+           <transactionManager type="JDBC"></transactionManager>
+           <!--配置数据库信息-->
+           <dataSource type="POOLED">
+               <!--配置数据库的四个信息-->
+               <property name="driver" value="${jdbc.driver}"/>
+               <property name="url" value="${jdbc.url}"/>
+               <property name="username" value="${jdbc.username}"/>
+               <property name="password" value="${jdbc.password}"/>
+           </dataSource>
+       </environment>
+   </environments>
+
+    <!--指定映射配置文件的位置，映射配置文件指的是每个dao独立的配置文件-->
+    <mappers>
+       <!-- <mapper resource="com/yn/dao/IUserDAO.xml"></mapper>
+        <mapper class="com.yn.dao.IUserDAO"></mapper>-->
+        <package name="com.yn.dao"></package>
+    </mappers>
+</configuration>
